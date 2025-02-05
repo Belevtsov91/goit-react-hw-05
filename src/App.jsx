@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import './App.css';
 
@@ -14,7 +14,7 @@ const API_TOKEN = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYWI5ZDM5ZjRlNDg1OGNhNDk2NmE5
 
 function App() {
   return (
-    <Router>
+    <>
       <Navigation />
       <Suspense fallback={<div>Loading...</div>}>
         <div className="page-content">
@@ -29,7 +29,7 @@ function App() {
           </Routes>
         </div>
       </Suspense>
-    </Router>
+    </>
   );
 }
 

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
+import MovieList from '../../components/MovieList/MovieList';
 import styles from './MoviesPage.module.css';
 
 const MoviesPage = ({ API_TOKEN }) => {
@@ -42,15 +43,7 @@ const MoviesPage = ({ API_TOKEN }) => {
         <button type="submit">Search</button>
       </form>
 
-      <ul>
-        {movies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id}`} state={{ from: `/movies?query=${query}` }}>
-              {movie.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <MovieList movies={movies} />
     </div>
   );
 };
