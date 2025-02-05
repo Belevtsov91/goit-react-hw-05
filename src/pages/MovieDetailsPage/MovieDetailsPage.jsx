@@ -1,19 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useParams, Link, useNavigate, Outlet } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { useParams, Link, useLocation, Outlet } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './MovieDetailsPage.module.css';
 
 const MovieDetailsPage = ({ API_TOKEN }) => {
   const { movieId } = useParams();
-  const navigate = useNavigate();
+  const location = useLocation();
+  const backLinkRef = useRef(location.state?.from || '/movies');
   const [movie, setMovie] = useState(null);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
         const response = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}`, {
-          headers: { Authorization: `Bearer ${API_TOKEN}` }
+          headers: { Authorization: `Bearer ${API_TOKEN}` },
         });
         setMovie(response.data);
       } catch (error) {
@@ -27,16 +28,14 @@ const MovieDetailsPage = ({ API_TOKEN }) => {
 
   return (
     <div>
-      {/* Кнопка "Go Back" теперь ведет на главную страницу */}
-      <button className={styles.goBack} onClick={() => navigate('/')}>
+      {/* Кнопка "Go Back" */}
+      <Link to={backLinkRef.current} className={styles.goBack}>
         ← Go back
-      </button>
+      </Link>
 
       <div className={styles.container}>
-        {/* Постер фильма */}
         <img className={styles.image} src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
 
-        {/* Информация о фильме */}
         <div className={styles.info}>
           <h1>{movie.title} ({movie.release_date.split('-')[0]})</h1>
           <p><strong>User Score:</strong> {Math.round(movie.vote_average * 10)}%</p>
@@ -49,16 +48,11 @@ const MovieDetailsPage = ({ API_TOKEN }) => {
         </div>
       </div>
 
-      {/* Дополнительная информация */}
       <div className={styles.additionalInfo}>
         <h2>Additional information</h2>
         <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
+          <li><Link to="cast">Cast</Link></li>
+          <li><Link to="reviews">Reviews</Link></li>
         </ul>
       </div>
 
