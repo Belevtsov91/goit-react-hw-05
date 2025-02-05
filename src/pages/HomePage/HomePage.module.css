@@ -1,0 +1,29 @@
+.container {
+    padding: 20px;
+    margin-top: 60px;
+    /* Отступ для учета фиксированной навигации */
+}
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 10px 0;
+}
+
+ul li a {
+    text-decoration: none;
+    color: blue;
+    font-size: 18px;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}

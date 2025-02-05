@@ -1,0 +1,33 @@
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* height: 60px; */
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.link {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 18px;
+}
+
+.link.active {
+    color: rgb(255, 20, 147);
+}
+
+/* Убираем margin-top и используем padding-top */
+.page-content {
+    padding-top: 70px;
+    /* Учитываем высоту навигации */
+}

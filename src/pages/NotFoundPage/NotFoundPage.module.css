@@ -1,0 +1,25 @@
+.container {
+    text-align: center;
+    padding: 50px;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: bold;
+    color: red;
+}
+
+.text {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.link {
+    color: blue;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
